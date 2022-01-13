@@ -1,0 +1,30 @@
+.results-box {
+  max-width: 500px;
+  margin: 25px;
+  margin-top: 25px;
+  background: darkcyan;
+  color: white;
+  border-radius: 20px;
+  padding: 12px 12px;
+}
+h4 {
+  text-align: center;
+  margin: 0  20px 20px 0; 
+}
+.results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    row-gap: 20px;
+    color: white;
+}
+.results p{
+    text-align: center;
+    font-family: Phosphate;
+}
+
+@media screen and (min-width: 768px) {
+  .results-box {
+    margin: 25px auto;
+  }
+}

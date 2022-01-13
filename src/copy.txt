@@ -1,0 +1,101 @@
+  let list = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  let Max_Selects = 1;
+  let player = true;
+  let userClick = false;
+  const computer = () => {
+    let container = document.getElementById("container");
+    let options = container.children;
+    let item;
+    let loop = true;
+    while(loop){
+      item =  Math.floor(Math.random() * list.length);
+      loop = list[item] === null ? true : false;
+    }
+    let select = options[item];
+    // Max_Selects++;
+    setTimeout(() => select.click(),900)
+  };
+
+  const computerChoice = (element) => {
+    let svgElement = element.lastElementChild;
+    svgElement.classList.remove("d-none");
+    let children = svgElement.children;
+    Array.from(children).forEach((element) => {
+      setTimeout(() => {
+        element.style.strokeDashoffset = 0;
+      }, 100);
+    });
+    const data_value = parseInt(element.dataset.value);
+    element.innerHTML = "";
+    element.appendChild(svgElement);
+    player = true;
+    editState(data_value);
+  }
+
+  const editState = (value) => {
+    list[value] = null;
+    Max_Selects++;
+    console.log(list);
+  };
+
+  const user = (element) => {
+    const data_value = parseInt(element.dataset.value);
+    console.log(data_value)
+    if(list[data_value] === null){
+      alert('select another item');
+      console.log(list)
+    }else{
+      const svgElement = element.firstElementChild;
+      svgElement.classList.remove("d-none");
+      let userShape = svgElement.firstElementChild;
+      setTimeout(() => {
+        userShape.style.strokeDashoffset = 0;
+      },100)
+      element.innerHTML = "";
+      element.appendChild(svgElement);
+      player = false;
+      console.log(player)
+      editState(data_value);
+      // Max_Selects++;
+      Max_Selects >= list.length || computer();
+    }
+
+    
+  };
+
+  const clickHandler = (e) => {
+    const target = e.currentTarget;
+    switch (player) {
+      case true:
+        user(target);
+        break;
+      case false :
+        computerChoice(target);
+        break;
+      default :
+          return ;
+        
+    }
+    // const svgElement = player
+    //   ? target.firstElementChild
+    //   : target.lastElementChild;
+    // svgElement.classList.remove("d-none");
+    // let children = svgElement.children;
+    // Array.from(children).forEach((element) => {
+    //   setTimeout(() => {
+    //     element.style.strokeDashoffset = 0;
+    //   }, 100);
+    // });
+    // target.innerHTML = "";
+    // target.appendChild(svgElement);
+
+  };
+
+
+
+
+
+
+
+
+  /////////////////////////////////////////////////////
